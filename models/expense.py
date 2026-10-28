@@ -1,5 +1,5 @@
 class Expense:
-    def __init__(self, serial_no,  date, amount, category, remark):
+    def __init__(self, serial_no, date, amount, category, remark):
         self.serial_no = serial_no
         self.date = date
         self.amount = amount
@@ -12,5 +12,5 @@ class Expense:
             "date": self.date,
             "amount": self.amount,
             "category": self.category,
-            "remark": self.remark
+            "remark": self.remark,
         }

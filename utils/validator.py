@@ -7,8 +7,9 @@ ALLOWED_CATEGORIES = {
     "utilities",
     "entertainment",
     "shopping",
-    "other"
+    "other",
 }
+
 
 def validate_serial_no(serial_no, existing_expenses):
     if not isinstance(serial_no, int):
@@ -19,6 +20,7 @@ def validate_serial_no(serial_no, existing_expenses):
         if e.serial_no == serial_no:
             return False, "Serial number already exists"
     return True, None
+
 
 def validate_date(date_value, required=True):
     if not date_value:
@@ -42,19 +44,22 @@ def validate_date(date_value, required=True):
 
     return True, None
 
+
 def validate_amount(amount):
     if not isinstance(amount, (int, float)):
         return False, "Amount must be a number"
     if amount <= 0:
         return False, "Amount must be greater than zero"
     return True, None
-    
+
+
 def validate_category(category):
     if not category:
         return False, "Category can't be empty"
     if category.lower() not in ALLOWED_CATEGORIES:
         return False, f"Category must be one of {ALLOWED_CATEGORIES}"
     return True, None
+
 
 def validate_remark(remark):
     if remark is None:
@@ -64,6 +69,7 @@ def validate_remark(remark):
     if len(remark) > 100:
         return False, "Remark can't exceed 100 characters"
     return True, None
+
 
 def validate_expense(expense, existing_expenses, is_update=False):
     if not is_update:

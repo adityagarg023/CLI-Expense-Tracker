@@ -1,6 +1,7 @@
 from models.expense import Expense
 from src.file_manager import FileManager
 
+
 class ExpenseManager:
     def __init__(self):
         self.file_manager = FileManager()
@@ -23,17 +24,23 @@ class ExpenseManager:
         original_len = len(self.expenses)
         self.expenses = [e for e in self.expenses if e.serial_no != serial_no]
         if len(self.expenses) == original_len:
-            return False   # nothing deleted
+            return False  # nothing deleted
         self.save()
         return True
 
-    def update_expense(self, serial_no, date=None, amount=None, category=None, remark=None):
+    def update_expense(
+        self, serial_no, date=None, amount=None, category=None, remark=None
+    ):
         for e in self.expenses:
             if e.serial_no == serial_no:
-                if date: e.date = date
-                if amount: e.amount = amount
-                if category: e.category = category
-                if remark: e.remark = remark
+                if date:
+                    e.date = date
+                if amount:
+                    e.amount = amount
+                if category:
+                    e.category = category
+                if remark:
+                    e.remark = remark
                 self.save()
                 return True
         return False

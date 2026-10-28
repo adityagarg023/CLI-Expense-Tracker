@@ -2,6 +2,7 @@ import csv, os
 
 CSV_FILE = "data/expense.csv"
 
+
 class FileManager:
     def __init__(self):
         os.makedirs("data", exist_ok=True)
@@ -15,8 +16,8 @@ class FileManager:
         with open(CSV_FILE, "r", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                row['amount'] = float(row['amount'])
-                row['serial_no'] = int(row['serial_no'])
+                row["amount"] = float(row["amount"])
+                row["serial_no"] = int(row["serial_no"])
                 expense.append(row)
         return expense
 

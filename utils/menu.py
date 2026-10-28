@@ -3,6 +3,7 @@ from models.expense import Expense
 from src import summary
 from utils.validator import validate_expense
 
+
 def menu():
     manager = ExpenseManager()
 
@@ -23,7 +24,9 @@ def menu():
                 print("No expenses found.")
             else:
                 for e in expenses:
-                    print(f"{e.serial_no} | {e.date} | {e.amount} | {e.category} | {e.remark}")
+                    print(
+                        f"{e.serial_no} | {e.date} | {e.amount} | {e.category} | {e.remark}"
+                    )
 
         elif choice == "2":
             try:
@@ -37,9 +40,11 @@ def menu():
                     date=date_str,
                     amount=amount,
                     category=category,
-                    remark=remark
+                    remark=remark,
                 )
-                ok, err = validate_expense(new_expense, manager.get_expenses(), is_update=False)
+                ok, err = validate_expense(
+                    new_expense, manager.get_expenses(), is_update=False
+                )
                 if not ok:
                     print("Error:", err)
                 else:
@@ -66,7 +71,9 @@ def menu():
 
                 new_date = date_str if date_str else old_expense.date
                 new_amount = float(amount_str) if amount_str else old_expense.amount
-                new_category = category.capitalize() if category else old_expense.category
+                new_category = (
+                    category.capitalize() if category else old_expense.category
+                )
                 new_remark = remark if remark else old_expense.remark
 
                 temp_expense = Expense(
@@ -74,10 +81,12 @@ def menu():
                     date=new_date,
                     amount=new_amount,
                     category=new_category,
-                    remark=new_remark
+                    remark=new_remark,
                 )
 
-                ok, err = validate_expense(temp_expense, manager.get_expenses(), is_update=True)
+                ok, err = validate_expense(
+                    temp_expense, manager.get_expenses(), is_update=True
+                )
                 if not ok:
                     print(err)
                     continue
